@@ -1,0 +1,37 @@
+name: CollectRandomItem
+version: '${project.version}'
+main: de.tealfire.collectrandomitem.CollectRandomItem
+api-version: 1.19
+authors: [ DerTyp876 ]
+description: Collect random items in mc
+commands:
+  skip:
+    description: Skip item
+  unskip:
+    description: Unskip last item
+  itemsStart:
+    description: Start
+  itemsStop:
+    description: Stop
+  itemsRestart:
+    description: Restart
+  pause:
+    description: Pause
+  resume:
+    description: resume
+  reroll:
+    description: reroll item
+  skippedItems:
+    description: List skipped items
+  finishedItems:
+    description: Show finished items
+  closedItems:
+    description: Show remaining items
+  remainingItems:
+    description: Show remaining items
+  itemsSave:
+    description: Save
+  timer:
+    description: Shows timer
+  timerReset:
+    description: Resets the timer
