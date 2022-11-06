@@ -36,7 +36,10 @@ public class MaterialManager {
         System.out.println("Loading save files...");
         loadFromFile();
         System.out.println("Updating wanted material...");
-        updateWantedMaterial();
+        if (wantedMaterial == null) {
+            updateWantedMaterial();
+        }
+
     }
 
     public Material getRandomMaterial() {
@@ -158,6 +161,15 @@ public class MaterialManager {
 
     public void loadFromFile() {
         System.out.println("Loading from files...");
+        System.out.println("Loading file plugins/wantedItem.txt...");
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("plugins/wantedItem.txt"));
+            setWantedMaterial(Material.getMaterial(reader.readLine()));
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         System.out.println("Loading file plugins/skippedItems.txt...");
         try {
             BufferedReader reader = new BufferedReader(new FileReader("plugins/skippedItems.txt"));
@@ -191,6 +203,15 @@ public class MaterialManager {
     public void saveToFile() {
         System.out.println("Saving to files...");
 
+        System.out.println("Saving wantedItem");
+        try {
+            PrintWriter writer = new PrintWriter("plugins/wantedItem.txt", "UTF-8");
+            writer.println(wantedMaterial.name());
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e.toString());
+        }
+
         System.out.println("Saving skippedItems");
         try {
             PrintWriter writer = new PrintWriter("plugins/skippedItems.txt", "UTF-8");
@@ -203,7 +224,7 @@ public class MaterialManager {
         } catch (IOException e) {
             System.out.println(e.toString());
         }
-        
+
         System.out.println("Saving finishedItems");
         try {
             PrintWriter writer = new PrintWriter("plugins/finishedItems.txt", "UTF-8");
