@@ -20,13 +20,13 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public final class CollectRandomItem extends JavaPlugin implements Listener {
-    public MaterialManager materialManager;
-    public long timerTicks = 0L;
-    public boolean isRunning = false;
-    public boolean isPaused = false;
+    private MaterialManager materialManager;
 
-    public void start() {
+    private long timerTicks = 0L; // Ticks for how long a player needed
+    private boolean isRunning = false; // Is the currently running?
+    private boolean isPaused = false; // Is the game currently paused? (isRunning should be true if isPaused is true)
 
+    private void start() {
         if (!isRunning) {
             materialManager = new MaterialManager();
             isRunning = true;
@@ -35,7 +35,7 @@ public final class CollectRandomItem extends JavaPlugin implements Listener {
         }
     }
 
-    public void restart() {
+    private void restart() {
         if (isRunning) {
             stop();
             start();
@@ -43,7 +43,7 @@ public final class CollectRandomItem extends JavaPlugin implements Listener {
         }
     }
 
-    public void stop() {
+    private void stop() {
         if (isRunning) {
             materialManager = null;
             File skippedItemsFile = new File("plugins/skippedItems.txt");
@@ -60,21 +60,21 @@ public final class CollectRandomItem extends JavaPlugin implements Listener {
 
     }
 
-    public void pause() {
+    private void pause() {
         if (isRunning) {
             isPaused = true;
             getLogger().info("Paused!");
         }
     }
 
-    public void resume() {
+    private void resume() {
         if (isPaused) {
             isPaused = false;
             getLogger().info("Resumed!");
         }
     }
 
-    public String getTimerString() {
+    private String getTimerString() {
         long seconds = (long) (timerTicks) / 20L;
         SimpleDateFormat sdfDate = new SimpleDateFormat("HH:mm:ss");
         sdfDate.setTimeZone(TimeZone.getTimeZone("UTC"));
@@ -82,7 +82,7 @@ public final class CollectRandomItem extends JavaPlugin implements Listener {
         return sdfDate.format(timerDate);
     }
 
-    public void saveTimerToFile() {
+    private void saveTimerToFile() {
         System.out.println("Saving timer to file...");
         try {
             PrintWriter writer = new PrintWriter("plugins/timer.txt", "UTF-8");
@@ -93,7 +93,7 @@ public final class CollectRandomItem extends JavaPlugin implements Listener {
         }
     }
 
-    public void saveTimerStringToFile() {
+    private void saveTimerStringToFile() {
         try {
             PrintWriter writer = new PrintWriter("plugins/timerString.txt", "UTF-8");
             writer.println(getTimerString());
@@ -103,7 +103,7 @@ public final class CollectRandomItem extends JavaPlugin implements Listener {
         }
     }
 
-    public void loadTimerFromFile() {
+    private void loadTimerFromFile() {
         System.out.println("Loading file plugins/timer.txt...");
         try {
             BufferedReader reader = new BufferedReader(new FileReader("plugins/timer.txt"));

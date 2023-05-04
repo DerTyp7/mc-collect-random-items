@@ -7,7 +7,6 @@ import org.bukkit.event.entity.EntityPickupItemEvent;
 public class Events {
     @EventHandler
     public void onEntityPickupItemEvent(EntityPickupItemEvent event){
-        Bukkit.getLogger().info("Pick up");
-        Bukkit.getLogger().info( event.getItem().toString());
+        Bukkit.getLogger().info(event.getItem().toString()); // Debug message
     }
 }
