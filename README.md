@@ -1,5 +1,5 @@
 # CollectRandomItems
-`Spigot/Buckit 1.19`
+`papermc 1.19`
 This plugins gives you random items, which you have to pick up in your inventory.
 The goal is it to gather ALL items in the game.
 
